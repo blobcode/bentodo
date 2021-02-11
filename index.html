@@ -11,7 +11,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css"
     />
-    <script src="https://unpkg.com/lucia"></script>
+    <script src="https://unpkg.com/lucia/dist/lucia.js"></script>
   </head>
 
   <body>
@@ -29,7 +29,7 @@
         <!-- captures click event, pushing current `value` to `todo` -->
         <button>➕</button>
         <ul l-for="(task, i) in todo">
-          <li l-html="this.task" @click="todo = todo.filter(item => item !== this.task)"></li>
+          <li l-text="this.task" @click="todo.splice(this.i, 1)"></li>
         </ul>
         <button l-if="todo.length > 0" @click="todo = []">❌</button>
       </form>
