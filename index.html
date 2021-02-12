@@ -1,37 +1,38 @@
 <!-- This is a static file -->
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <title>🍱 bentodo</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css"
+    />
+    <script src="https://unpkg.com/lucia/dist/lucia.js"></script>
+  </head>
 
-<head>
-	<title>🍱 bentodo</title>
-	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css" />
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css" />
-	<script src="https://unpkg.com/lucia">
-	</script>
-	</script>
-</head>
-
-<body>
-	<header>
-		<h1>
-			🍱 bentodo
-		</h1>
-		<p>by <a href="https://github.com/blobcode">Blobcode</a></p>
-	</header>
-	<main>
-		<div l-state="{ value: '', todo: [] }">
-			<!-- two-way-binds `value` prop to value -->
-			<input l-model="value" />
-            <!-- captures click event, pushing current `value` to `todo` -->
-            <button @click="if(value.length > 0) {todo.push(value), value=''}">➕</button>
-            <ul l-for="(task, i) in todo">
-               <li l-html="this.task" @click="todo = todo.filter(item => item !== this.task)" ></li>
-            </ul>
-            <button l-if="todo.length > 0" @click="todo = []">❌</button>
-         </div>
-      </main>
-   </body>
+  <body>
+    <header>
+      <h1>🍱 bentodo</h1>
+      <p>by <a href="https://github.com/blobcode">Blobcode</a></p>
+    </header>
+    <main>
+      <form
+        l-state="{ value: '', todo: [] }"
+        @submit.prevent="if(value.length > 0) { todo.push(value), value = '' }"
+      >
+        <!-- two-way-binds `value` prop to value -->
+        <input l-model="value" />
+        <!-- captures click event, pushing current `value` to `todo` -->
+        <button>➕</button>
+        <ul l-for="(task, i) in todo">
+          <li l-text="this.task" @click="todo.splice(this.i, 1)"></li>
+        </ul>
+        <button l-if="todo.length > 0" @click="todo = []">❌</button>
+      </form>
+    </main>
+  </body>
 </html>
